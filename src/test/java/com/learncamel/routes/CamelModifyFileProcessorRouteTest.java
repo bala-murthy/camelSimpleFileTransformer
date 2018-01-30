@@ -12,7 +12,7 @@ import static java.lang.Thread.*;
 
 public class CamelModifyFileProcessorRouteTest extends CamelTestSupport {
     @Override
-    public RouteBuilder createRouteBuilder(){
+    public RouteBuilder createRouteBuilder() {
         return new CamelModifyFileProcessorRoute();
     }
 
@@ -27,7 +27,7 @@ public class CamelModifyFileProcessorRouteTest extends CamelTestSupport {
 
 
         Thread.sleep(5000);
-        File file = new File("F:\\ApacheCamel\\CamelWS\\learncamel-transform\\data\\output");
+        File file = new File("data/output");
         assertTrue(file.isDirectory());
         assertMockEndpointsSatisfied();
 
