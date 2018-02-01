@@ -8,7 +8,9 @@ public class simpleAggregatorStrategy implements org.apache.camel.processor.aggr
     public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
 
         if(oldExchange == null){
+            System.out.println("OldExchange Not null");
             return newExchange;
+
         }
 
         String oldBody = (String) oldExchange.getIn().getBody();
@@ -19,6 +21,7 @@ public class simpleAggregatorStrategy implements org.apache.camel.processor.aggr
         newExchange.getIn().setBody(newBody);
 
         return newExchange;
+        // Added to test push from local
 
     }
 }
