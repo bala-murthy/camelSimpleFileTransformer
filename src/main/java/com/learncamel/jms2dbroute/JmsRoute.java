@@ -9,6 +9,7 @@ public class JmsRoute extends RouteBuilder {
         from("activemq:queue:testQueue").
                 to("log:?level=INFO&showBody=true").
                 to("direct:activemqDestination");
+        //test
 
     }
 }
