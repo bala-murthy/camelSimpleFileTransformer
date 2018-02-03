@@ -35,18 +35,35 @@ public class jms2DBRouteTest extends CamelTestSupport {
     private DataSource setupDataSource(String url) {
 
         BasicDataSource ds = new BasicDataSource();
+
         ds.setUsername("postgres");
-        ds.setDriverClassName("org.postgresql.Driver");
         ds.setPassword("admin");
+
+        ds.setDriverClassName("org.postgresql.Driver");
+
         ds.setUrl(url);
+
         return ds;
     }
 
-    @Test
+    // In the below test code block, we test the incoming message from direct:input component
+    // The following code block shows how the result of select SQL from DB is passed to directDBOutput direct component
+    // and how that is being used to assert
+
+/*    @Test
     public void testMQ2DBInsert() {
-        String input = "First db input";
+        String input = "Second db input";
         ArrayList responseList =  template.requestBody("direct:dbInput", input, ArrayList.class);
         System.out.println("responseList : " + responseList.size());
         assertNotEquals(0,responseList.size());
+    }*/
+
+
+    @Test
+    public void testMQ2DBInsert() {
+        ArrayList responseList = (ArrayList) consumer.receiveBody("direct:directDBOutput");
+        System.out.println("responseList : " + responseList.size());
+        assertNotEquals(0,responseList.size());
+
     }
 }
